@@ -12,11 +12,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            ['username' => 'test'],
-            ['mail' => 'test@test'],
-            ['password' => 'test'],
-            ['bio' => 'test'],
-            ['images' => 'dawn.png']
+            'username' => 'test',
+            'mail' => 'test@test',
+            'password' => 'test',
+            'bio' => 'test',
+            'images' => 'dawn.png'
         ]);
     }
 }

@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "*",
         "laravelcollective/html": "6.*"
     },
     "require-dev": {
@@ -24,7 +25,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform-check": false
     },
     "extra": {
         "laravel": {

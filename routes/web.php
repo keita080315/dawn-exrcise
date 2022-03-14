@@ -28,16 +28,26 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
 
-
+Route::middleware(['auth'])->group(function () {
 //ログイン中のページ
-Route::get('/top','PostsController@index');
+    Route::get('/top','PostsController@index');
 
-Route::get('/profile','UsersController@profile');
+    Route::get('/profile','UsersController@profile');
 
-Route::get('/search','UsersController@index');
+    Route::get('/search','UsersController@index')->name('search');
+    Route::post('/search_mode','UsersController@search')->name('search_mode');
+    Route::get('/follow-list','PostsController@index');
+    Route::get('/follower-list','PostsController@index');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
 
+    Route::get('/userinfo', 'UsersController@detail')->name('userinfo');
 
+    Route::post('/post','PostsController@post')->name('post');
+    Route::get('/update_content','UsersController@update')->name('update_content');
+    Route::post('/modify_content','UsersController@modify')->name('modify_content');
+    Route::get('/logout','Auth\LoginController@logout');
 
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('homa');
