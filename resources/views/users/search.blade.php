@@ -11,9 +11,9 @@
     @if(!empty($select_users))
     <div>
         <table>
-            @foreach($select_users as $user)
-                <a href="{{route('userinfo', ['id' => $user['id']])}}">
-                    <dd>{{ $user['username'] }}</dd>
+            @foreach($select_users as $select_user)
+                <a href="{{route('userinfo/{id}', ['id' => $select_user['id']])}}">
+                    <dd>{{ $select_user['username'] }}</dd>
                 </a>
             @endforeach
         </table>

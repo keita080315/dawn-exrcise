@@ -11,8 +11,11 @@ class PostsController extends Controller
 {
 
     //
-    public function index()
-    {
+
+
+
+    public function index(){
+
         $user = Auth::user();
         $list = DB::table('posts')->get();
         return view('posts.index',compact('user','list'));
@@ -24,7 +27,6 @@ class PostsController extends Controller
         $posts = $request->input('post-content');
         $username = $request->input('username');
         DB::table('posts')->insert([
-            'user_id' =>$user->id,
             'username' =>$username,
             'posts' => $posts
         ]);
@@ -32,5 +34,8 @@ class PostsController extends Controller
         return view('posts.index',compact('list','user'));
 
     }
+
+
+
 
 }

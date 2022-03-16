@@ -35,7 +35,11 @@
             </div>
         </div>
     </header>
+
 @yield('content')
+
+
+
     <footer>
     </footer>
     <script src="JavaScriptファイルのURL"></script>

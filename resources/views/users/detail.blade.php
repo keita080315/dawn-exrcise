@@ -3,18 +3,18 @@
 @section('content')
 
 
-    <div>
+    <div class="row">
 
             @csrf
             <table>
                 <dt>ユーザー名</dt>
-                <input value="{{$params['username']}}" name="username" type="text">
+                <dd  name="username" >{{$params['username']}}</dd>
 
                 <dt>自己紹介文</dt>
-                <input value="{{$params['bio']}}" name="bio" type="text">
+                <dd  name="bio" >{{$params['bio']}}</dd>
 
                 <dt>アイコン</dt>
-                <input value="{{$params['image']}}" name="image" type="text">
+                <dd name="image" >{{$params['images']}}</dd>
                 <br>
 
             </table>
@@ -24,8 +24,15 @@
 
     </div>
 
-
-
+    @if(!empty($exists))
+        <a href="{{route('unfollow/{id}', ['id' => $exists['id']])}}">
+            フォローをはずす
+        </a>
+    @else()
+        <a href="{{route('follow/{id}', ['id' => $params['id']])}}">
+            フォローする
+        </a>
+    @endif
 @endsection
 <script>export default {
     components: {App}
