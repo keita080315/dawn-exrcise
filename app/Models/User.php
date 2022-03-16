@@ -30,4 +30,8 @@ class User extends Authenticatable
         {
             return $this->hasMany('App\Models\Post');
         }
+    public function follows()
+    {
+        return $this->hasMany('App\Models\Follow','follow');
+    }
 }
