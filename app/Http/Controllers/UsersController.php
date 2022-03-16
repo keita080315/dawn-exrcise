@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Follow;
 
 class UsersController extends Controller
 {
@@ -40,18 +41,22 @@ class UsersController extends Controller
         return view('users.search',compact('user'));
     }
     public function search(Request $request){
-
-        $user = Auth::User();
         $search = $request->input('search');
-        $select_users = User::where('username', 'LIKE', "%{$search}%")->paginate(10);
+        $user = Auth::User();
+        $select_users = User::where('username', 'LIKE', "%{$search}%")->where('id','!=',$user->id)->paginate(10);
         return view('users.search',compact('select_users','user'));
     }
     public function detail(int $id){
-        $user = User::find($id);
+        $users = User::find($id);
         $params = [
-            'user' => $user,
+            'id' => $users['id'],
+            'username' => $users['username'],
+            'bio' => $users['bio'],
+            'images' => $users['images'],
         ];
-        return view('users.detail',compact('params'));
+        $user = Auth::User();
+        $exists = Follow::where('follow', $user['id'])->where('follower', $params['id'])->first();
+        return view('users.detail',compact('params','user','exists'));
     }
 
 }

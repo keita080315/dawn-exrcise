@@ -40,14 +40,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/follower-list','PostsController@index');
 
 
-    Route::get('/userinfo', 'UsersController@detail')->name('userinfo');
+
+    Route::get('/userinfo/{id}', 'UsersController@detail')->name('userinfo/{id}');
+
+    Route::get('/follow/{id}', 'FollowsController@follow')->name('follow/{id}');
+    Route::get('/unfollow/{id}', 'FollowsController@lift')->name('unfollow/{id}');
 
     Route::post('/post','PostsController@post')->name('post');
     Route::get('/update_content','UsersController@update')->name('update_content');
     Route::post('/modify_content','UsersController@modify')->name('modify_content');
     Route::get('/logout','Auth\LoginController@logout');
 
+
 });
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('homa');

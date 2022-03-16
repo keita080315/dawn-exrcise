@@ -27,7 +27,7 @@
             <th>投稿内容</th>
             <th>投稿日時</th>
         </tr>
-        @foreach ($list as $list)
+        @foreach ($follow_post as $list)
             <tr>
                 <td>{{ $list->username }}</td>
                 <td>{{ $list->posts }}</td>
